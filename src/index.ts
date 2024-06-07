@@ -51,6 +51,42 @@ app.post('/register', async (c) => {
   }
 })
 
+app.post('/login', async (c) => {
+  const body: any = await c.req.json()
+  const prisma = c.var.prisma
+  try {
+    let out = await prisma.user.findUnique({
+      where: {
+        email: body.email
+      }
+    })
+    if (out != null) {
+      if (out.password == body.password) {
+        const jwt = await sign({ email: out.email, id: out.id }, c.env.JWT_SECRET)
+        return c.json({
+          status: "Logged In",
+          id: out.id,
+          token: jwt
+        })
+      }
+      else {
+        return c.json({
+          status: "Invalid password",
+        }, 400)
+
+      }
+    }
+    return c.json({
+      status: "User not exists"
+    })
+  }
+  catch (error) {
+    return c.json({
+      status: "Somthing went wrong"
+    }, 400)
+  }
+})
+
 
 
 
