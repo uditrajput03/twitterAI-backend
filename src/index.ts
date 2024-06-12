@@ -88,6 +88,11 @@ app.post('/login', async (c) => {
   }
 })
 
+app.get('/auth', async (c) => {
+  let jwtData = c.get('jwtPayload')
+  return c.json(jwtData)
+})
+
 
 
 
