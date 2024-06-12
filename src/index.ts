@@ -1,10 +1,12 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 
 type Bindings = {
   GROQ_KEY: string
 }
 
 const app = new Hono<{ Bindings: Bindings }>()
+app.use(cors())
 app.get('/test', async (c) => {
   let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
