@@ -93,6 +93,29 @@ app.get('/auth', async (c) => {
   return c.json(jwtData)
 })
 
+app.get('/auth/profile', async (c) => {
+  let jwtData = c.get('jwtPayload')
+  const prisma = c.var.prisma
+  try {
+    let profile = await prisma.user.findUnique({
+      where: {
+        id: jwtData.id
+      },
+      select: {
+        name: true,
+        email: true,
+        id: true,
+        verified: true
+      }
+    })
+    return c.json(profile)
+  } catch (error) {
+    return c.json({
+      status: "Somthing went wrong"
+    }, 400)
+  }
+}
+)
 
 
 
