@@ -3,7 +3,7 @@ import { decode, sign, verify } from 'hono/jwt'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { getPrisma } from './middleware'
+import { authCheck, getPrisma } from './middleware'
 
 type Bindings = {
   GROQ_KEY: string
@@ -16,6 +16,7 @@ type Variables = {
 const app = new Hono<{ Bindings: Bindings, Variables: Variables }>()
 app.use(logger())
 app.use(cors())
+app.use('/auth/*', authCheck)
 app.use(getPrisma)
 app.get('/', async (c: any) => {
   return c.text(`Hello from twitterAI`)
