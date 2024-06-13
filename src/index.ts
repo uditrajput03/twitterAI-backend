@@ -93,7 +93,7 @@ app.get('/auth', async (c) => {
   return c.json(jwtData)
 })
 
-app.get('/auth/profile', async (c) => {
+app.get('/auth/dashboard', async (c) => {
   let jwtData = c.get('jwtPayload')
   const prisma = c.var.prisma
   try {
