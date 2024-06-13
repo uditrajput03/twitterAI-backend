@@ -17,6 +17,22 @@ profile.use(logger())
 profile.use(cors())
 profile.use(getPrisma)
 
+profile.get('/', async (c: any) => {
+    const body = await c.req.json()
+    const prisma = c.var.prisma
+    let jwtData = c.get('jwtPayload')
+    const profiles = await prisma.profile.findMany({
+        where: {
+            userId: jwtData.id
+        },
+        select: {
+            name: true,
+            description: true,
+            id: true,
+        }
+    })
+    return c.json(profiles)
+})
 profile.post('/create', async (c) => {
     const body = await c.req.json()
     const prisma = c.var.prisma
