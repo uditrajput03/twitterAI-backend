@@ -4,11 +4,16 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.3",
+    "@prisma/adapter-neon": "^5.15.1",
+    "@prisma/client": "^5.15.1",
     "hono": "^4.4.5",
-    "prisma": "^5.15.1"
+    "prisma": "^5.15.1",
+    "ws": "^8.17.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
+    "@types/ws": "^8.5.10",
     "wrangler": "^3.57.2"
   }
 }

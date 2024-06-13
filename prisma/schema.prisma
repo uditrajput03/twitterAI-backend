@@ -19,7 +19,7 @@ model User {
 
 model Profile {
   id          Int    @id @default(autoincrement())
-  name        Int
+  name        String
   description String
   user        User   @relation(fields: [userId], references: [id])
   userId      Int
