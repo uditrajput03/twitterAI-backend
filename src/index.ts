@@ -19,7 +19,7 @@ app.use(logger())
 app.use(cors())
 app.use(getPrisma)
 app.use('/auth/*', authCheck)
-app.route('/auth/profile', profile)
+app.route('/auth/profile/*', profile)
 
 app.get('/', async (c: any) => {
   return c.text(`Hello from twitterAI`)
@@ -120,97 +120,133 @@ app.get('/auth/dashboard', async (c) => {
 }
 )
 
+app.post('/auth/generate', async (c) => {
+  let reqBody = await c.req.json()
+  let jwtData = c.get('jwtPayload')
+  const prisma = c.var.prisma
+  try {
+    const profile = await prisma.profile.findUnique({
+      where: {
+        userId: jwtData.id,
+        id: reqBody.profile
+      }
+    })
+    let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${c.env.GROQ_KEY}`
+      },
+      body: JSON.stringify({
+        "messages": [
+          {
+            "role": "system",
+            "content": "You have give a description which can have details about the product or of the job or personal detail , and you have given a comment you need to reply to it as a human to promote the description in a organic and smooth way which promote the description randomly into the reply.\nReplys should be short, easy to understand.\nreply must not contain any external link.\nreply must not contains any hashtag"
+          },
+          {
+            "role": "user",
+            "content": `Description - ${profile.description}`
+          },
+          {
+            "role": "user",
+            "content": `Comment - \"${reqBody.tweet}\"`
+          }
+        ], "model": "llama3-70b-8192",
+        "temperature": 1,
+        "max_tokens": 1024,
+        "top_p": 1,
+        "stream": false,
+      })
+    })
+    let groqBody: any = await groq.json()
+    return c.json(
+      {
+        "response": groqBody.choices[0].message.content,
+        "profile": profile.name
+      }
+    )
+  } catch (error) {
+    console.log(error);
+
+    return c.json({
+      status: "Somthing went wrong"
+    }, 400)
+  }
+})
 
 
+app.get('/test', async (c) => {
+  try {
+    let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${c.env.GROQ_KEY}`
+      },
+      body: JSON.stringify({
+        "messages": [
+          {
+            "role": "system",
+            "content": "You have give a description which can have details about the product or of the job or personal detail , and you have given a comment you need to reply to it as a human to promote the description in a organic and smooth way which promote the description randomly into the reply.\nReplys should be short, easy to understand.\nreply must not contain any external link.\nreply must not contains any hashtag"
+          },
+          {
+            "role": "user",
+            "content": "Description - ScreenCat - a extension to take full page screenshot"
+          },
+          {
+            "role": "user",
+            "content": "Comment - \"I need to take full screenshot my website content\""
+          }
+        ], "model": "llama3-70b-8192",
+        "temperature": 1,
+        "max_tokens": 1024,
+        "top_p": 1,
+        "stream": false,
+      })
+    })
 
+    let groqBody: any = await groq.json()
+    return c.text(groqBody.choices[0].message.content)
+  } catch (error) {
+    console.log(error);
 
+    return c.json({
+      status: "Somthing went wrong"
+    }, 400)
+  }
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.get('/test', async (c) => {
-//   let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${c.env.GROQ_KEY}`
-//     },
-//     body: JSON.stringify({
-//       "messages": [
-//         {
-//           "role": "system",
-//           "content": "You have give a description which can have details about the product or of the job or personal detail , and you have given a comment you need to reply to it as a human to promote the description in a organic and smooth way which promote the description randomly into the reply.\nReplys should be short, easy to understand.\nreply must not contain any external link.\nreply must not contains any hashtag"
-//         },
-//         {
-//           "role": "user",
-//           "content": "Description - ScreenCat - a extension to take full page screenshot"
-//         },
-//         {
-//           "role": "user",
-//           "content": "Comment - \"I need to take full screenshot my website content\""
-//         }
-//       ], "model": "llama3-70b-8192",
-//       "temperature": 1,
-//       "max_tokens": 1024,
-//       "top_p": 1,
-//       "stream": false,
-//     })
-//   })
-//   let groqBody: any = await groq.json()
-//   return c.text(groqBody.choices[0].message.content)
-// })
-
-// app.post('/test1', async (c) => {
-//   let reqBody = await c.req.json()
-//   let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${c.env.GROQ_KEY}`
-//     },
-//     body: JSON.stringify({
-//       "messages": [
-//         {
-//           "role": "system",
-//           "content": "You have give a description which can have details about the product or of the job or personal detail , and you have given a comment you need to reply to it as a human to promote the description in a organic and smooth way which promote the description randomly into the reply.\nReplys should be short, easy to understand.\nreply must not contain any external link.\nreply must not contains any hashtag"
-//         },
-//         {
-//           "role": "user",
-//           "content": "Description - ScreenCat - a extension to take full page screenshot"
-//         },
-//         {
-//           "role": "user",
-//           "content": `Comment - \"${reqBody.tweet}\"`
-//         }
-//       ], "model": "llama3-70b-8192",
-//       "temperature": 1,
-//       "max_tokens": 1024,
-//       "top_p": 1,
-//       "stream": false,
-//     })
-//   })
-//   let groqBody: any = await groq.json()
-//   return c.text(groqBody.choices[0].message.content)
-// })
+app.post('/test1', async (c) => {
+  let reqBody = await c.req.json()
+  let groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${c.env.GROQ_KEY}`
+    },
+    body: JSON.stringify({
+      "messages": [
+        {
+          "role": "system",
+          "content": "You have give a description which can have details about the product or of the job or personal detail , and you have given a comment you need to reply to it as a human to promote the description in a organic and smooth way which promote the description randomly into the reply.\nReplys should be short, easy to understand.\nreply must not contain any external link.\nreply must not contains any hashtag"
+        },
+        {
+          "role": "user",
+          "content": "Description - ScreenCat - a extension to take full page screenshot"
+        },
+        {
+          "role": "user",
+          "content": `Comment - \"${reqBody.tweet}\"`
+        }
+      ], "model": "llama3-70b-8192",
+      "temperature": 1,
+      "max_tokens": 1024,
+      "top_p": 1,
+      "stream": false,
+    })
+  })
+  let groqBody: any = await groq.json()
+  return c.text(groqBody.choices[0].message.content)
+})
 
 export default app
