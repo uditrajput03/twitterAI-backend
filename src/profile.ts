@@ -81,3 +81,32 @@ profile.delete('/', async (c) => {
     }
 }
 )
+profile.put('/', async (c) => {
+    const body = await c.req.json()
+    console.log(body);
+    const prisma = c.var.prisma
+    let jwtData = c.get('jwtPayload')
+    try {
+        const profile = await prisma.profile.update({
+            where: {
+                id: body.id,
+                userId: jwtData.id
+            },
+            data: {
+                name: body.name,
+                description: body.description
+            }
+        })
+        return c.json(
+            {
+                status: "success",
+                id: profile.id
+            })
+    } catch (error) {
+        console.log(error);
+        
+        return c.json({
+            status: "Somthing went wrong"
+        }, 400)
+    }
+})
