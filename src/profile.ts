@@ -21,28 +21,40 @@ profile.get('/', async (c: any) => {
     const body = await c.req.json()
     const prisma = c.var.prisma
     let jwtData = c.get('jwtPayload')
-    const profiles = await prisma.profile.findMany({
-        where: {
-            userId: jwtData.id
-        },
-        select: {
-            name: true,
-            description: true,
-            id: true,
-        }
-    })
-    return c.json(profiles)
+    try {
+        const profiles = await prisma.profile.findMany({
+            where: {
+                userId: jwtData.id
+            },
+            select: {
+                name: true,
+                description: true,
+                id: true,
+            }
+        })
+        return c.json(profiles)
+    } catch (error) {
+        return c.json({
+            status: "Somthing went wrong"
+        }, 400)
+    }
 })
-profile.post('/create', async (c) => {
+profile.post('/', async (c) => {
     const body = await c.req.json()
     const prisma = c.var.prisma
     let jwtData = c.get('jwtPayload')
-    const profile = await prisma.profile.create({
-        data: {
-            name: body.name,
-            description: body.description,
-            userId: jwtData.id
-        }
-    })
-    return c.json({ profile })
+    try {
+        const profile = await prisma.profile.create({
+            data: {
+                name: body.name,
+                description: body.description,
+                userId: jwtData.id
+            }
+        })
+        return c.json({ profile })
+    } catch (error) {
+        return c.json({
+            status: "Somthing went wrong"
+        }, 400)
+    }
 })
