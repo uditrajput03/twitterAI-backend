@@ -22,7 +22,7 @@ app.use('/auth/*', authCheck)
 app.route('/auth/profile/*', profile)
 
 app.get('/', async (c: any) => {
-  return c.text(`Hello from twitterAI`)
+  return c.text(`Hello from twitterAI prod`)
 })
 app.post('/register', async (c) => {
   const body: any = await c.req.json()

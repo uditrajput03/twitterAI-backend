@@ -18,7 +18,6 @@ profile.use(cors())
 profile.use(getPrisma)
 
 profile.get('/', async (c: any) => {
-    const body = await c.req.json()
     const prisma = c.var.prisma
     let jwtData = c.get('jwtPayload')
     try {
