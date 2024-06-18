@@ -1,0 +1,1737 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API Documentation #reference</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="#folder-user">User</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-user-register">register</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-login">login</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-auth">auth</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-dashboard">dashboard</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-profile">Profile</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-profile-new-request">New Request</a>
+                </li>
+                
+                <li>
+                    <a href="#request-profile-create">create</a>
+                </li>
+                
+                <li>
+                    <a href="#request-profile-update">update</a>
+                </li>
+                
+                <li>
+                    <a href="#request-profile-delete">delete</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-generate">Generate</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-generate-generate">Generate</a>
+                </li>
+                
+                <li>
+                    <a href="#request-generate-test1">test1</a>
+                </li>
+                
+                <li>
+                    <a href="#request-generate-test">test</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>API Documentation #reference</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-user">
+                        User
+                        <a href="#folder-user"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-register">
+                            register
+                            <a href="#request-user-register"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-register-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-register-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-register-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "name":"test",
+    "email":"test10@example.com",
+    "password":"test"
+}' "api.twitterai.workers.dev/register"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-register-example-http">
+                                    <pre><code class="hljs http">POST api.twitterai.workers.dev/register HTTP/1.1
+Host: 
+
+{
+    "name":"test",
+    "email":"test10@example.com",
+    "password":"test"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-user-register-responses-63983e48-8d1e-4148-928a-933b5c8183d7" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-user-register-responses-4b067ba2-0c7a-4b74-b33a-3b700cfc2905" data-toggle="tab">
+                                        
+                                            already
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-user-register-responses-63983e48-8d1e-4148-928a-933b5c8183d7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>0 </td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Account Created successfully",
+    "id": 5,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-user-register-responses-4b067ba2-0c7a-4b74-b33a-3b700cfc2905">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>0 </td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Account Already exist"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-login">
+                            login
+                            <a href="#request-user-login"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-login-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-login-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-login-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "email":"test10@example.com1w",
+    "password":"test"
+}' "api.twitterai.workers.dev/login"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-login-example-http">
+                                    <pre><code class="hljs http">POST api.twitterai.workers.dev/login HTTP/1.1
+Host: 
+
+{
+    "email":"test10@example.com1w",
+    "password":"test"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-user-login-responses-042d64b0-aac2-4fe7-bd86-6a9106e02c6e" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-user-login-responses-a3a50597-767a-4a73-a5d0-48e1fb128f48" data-toggle="tab">
+                                        
+                                            invalid
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-user-login-responses-5fcb1231-1df1-4e99-a6f0-4343f8405210" data-toggle="tab">
+                                        
+                                            Not exist
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-user-login-responses-042d64b0-aac2-4fe7-bd86-6a9106e02c6e">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:53:52 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=buHjbx7rPgzS%2B%2B5firdOLuyocNJoZNu%2BHleHC9W0CzCTVM4In7OyoQhNTfvDqsmFjs4FYbbcPgM8HYHotpydwWB4qpTXN3Jq8sNVoQcUqkaUG2nl80IBIQkltYeoVUHsG79iGI%2FbtTpOwOIH"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>899831557aea8256-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Logged In",
+    "id": 5,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-user-login-responses-a3a50597-767a-4a73-a5d0-48e1fb128f48">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:55:49 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>29</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=T1g5t1umEvAxCmBoGju%2FDpZFSO8vjDSdbfc0LDMTzx7z1GAcMJKcN83dB%2B71YZyc88%2BXCcTUoil%2Bibugr0JjKFdaA%2BU8zQPMtN2c9HMijaNY%2FeJgB3Z6FRsnuLEMDTrPYHmuRzh9ClbOq8JC"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>899834324b697f56-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Invalid password"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-user-login-responses-5fcb1231-1df1-4e99-a6f0-4343f8405210">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:56:47 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>28</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=dewLwfBok%2FsOLP0eVeDphCG%2BbnaOgoKgYlVvE2Kp0BoLvydhLxyQgmmeqL1%2Bt7C7manLooyQxz03V%2Bn%2F%2FW7QU6qHDg5TmiDJlaFrkdrwgDyEXY1NaeD%2FjQzvP%2BK60Zk3Aiv7Fo14bissGDi2"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>8998359f2c006fb3-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "User not exists"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-auth">
+                            auth
+                            <a href="#request-user-auth"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-auth-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-auth-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-auth-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" "api.twitterai.workers.dev/auth"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-auth-example-http">
+                                    <pre><code class="hljs http">GET api.twitterai.workers.dev/auth HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-user-auth-responses-dac16f20-7ed6-42aa-ace6-5475f095dd6e" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-user-auth-responses-e9d4e60a-ec52-4671-a7e9-611dade21e0d" data-toggle="tab">
+                                        
+                                            Invalid
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-user-auth-responses-868184da-4652-4c87-8ca7-4f0ebfd03211" data-toggle="tab">
+                                        
+                                            Null token
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-user-auth-responses-dac16f20-7ed6-42aa-ace6-5475f095dd6e">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:58:22 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>37</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=QXsd95Z2%2FZlax1DKOPPuSImq0vOJPqBt%2BVrGG4PGZ1lDLJpbN3CmmdEhVkkjSSU5RsoXUGsr48zcpWcykO241c3A37wiTGrV%2Be1CJurtVfe5de%2BPb6ZxkmPhE1nsvYeywIJ5By%2FNZQcvZ0xf"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>899837f5ea450674-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "email": "test10@example.com",
+    "id": 5
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-user-auth-responses-e9d4e60a-ec52-4671-a7e9-611dade21e0d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:58:41 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>35</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=0jbPNkE55iee1peO%2BJjzYlXh%2B1ijwB0mEOnf12h2QkC6h%2FRSbSWVZcEBIu0U8W9%2FIsPW8m5IJCdo%2BUfBmrTzpBkrqHRXCGp%2FnYcTW6a5C%2FNaSPQQXBW8GZf9WZF8tQE4PpXeO%2B1hfPrYhKqr"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>8998386ade9d8027-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Invalid Authentication"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-user-auth-responses-868184da-4652-4c87-8ca7-4f0ebfd03211">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 21:59:28 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>25</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=W2EN%2BMRdqLpTs8TeixYXUBLxPEtuckwne4XjWnAsqgcd0udr2ogjhmaSksYdtQSCQ8EV3l2DFgJC2BUNNWhTqK9e6jDTxC%2Bee1eeiF6pukXlZdC8fjS8lIIk%2FrM1JNCrNUpljI2eOIxQ4E5c"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>8998398fda9a0774-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "unauthorized"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-dashboard">
+                            dashboard
+                            <a href="#request-user-dashboard"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-dashboard-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-dashboard-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-dashboard-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" "api.twitterai.workers.dev/auth/dashboard"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-dashboard-example-http">
+                                    <pre><code class="hljs http">GET api.twitterai.workers.dev/auth/dashboard HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-user-dashboard-responses-46797b30-da09-4b5c-9e22-7ff093217d4d" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-user-dashboard-responses-46797b30-da09-4b5c-9e22-7ff093217d4d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:01:41 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=vnwoDA2BOHOcLbZQbTZo8fQYK7hulJtg3%2F8Ig%2BbjpAz80Rj7Yi0L%2BbtE8Jkyt2UZVjsw94K2Lpp5qxOdbSLVo3zw390rpcmiAbx%2FDla0cp3pug42Ti%2FuM5njB85qFiSqwx8FO8kGgZsIsHuG"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89983ccccff3594f-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "name": "test",
+    "email": "test10@example.com",
+    "id": 5,
+    "verified": false
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-profile">
+                        Profile
+                        <a href="#folder-profile"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-profile-new-request">
+                            New Request
+                            <a href="#request-profile-new-request"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-profile-new-request-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-profile-new-request-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-profile-new-request-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" "api.twitterai.workers.dev/auth/profile"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-profile-new-request-example-http">
+                                    <pre><code class="hljs http">GET api.twitterai.workers.dev/auth/profile HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-profile-new-request-responses-8d806964-c195-404c-b0a8-d321a980333a" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-profile-new-request-responses-8d806964-c195-404c-b0a8-d321a980333a">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:19:46 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=TNXtDVFwyyDvdl8slviyBLHbPMWvzrqZT1wu7fQhkZyj7lqqUef0xYg60gpKOboV1iPix0tHGdJk1VcZ1ewVGmAhs7aZb2YXzOXYTEQTYcnsN2e9CBAW59NaSfc6zNkF6l%2Fhx5tTVbI55vHC"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>8998574958ec13c8-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "name": "Updated",
+        "description": "This is a test which is updated",
+        "id": 10
+    },
+    {
+        "name": "Test",
+        "description": "This is a test des",
+        "id": 11
+    },
+    {
+        "name": "Test",
+        "description": "This is a test des",
+        "id": 12
+    },
+    {
+        "name": "Updateds",
+        "description": "This is a test which is updated",
+        "id": 13
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-profile-create">
+                            create
+                            <a href="#request-profile-create"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-profile-create-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-profile-create-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-profile-create-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" -d '{
+  "name": "Test",
+  "description": "This is a test des"
+}' "api.twitterai.workers.dev/auth/profile"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-profile-create-example-http">
+                                    <pre><code class="hljs http">POST api.twitterai.workers.dev/auth/profile HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw
+
+{
+  "name": "Test",
+  "description": "This is a test des"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-profile-create-responses-048be57a-0d56-468f-9dbe-d8f8089a61d1" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-profile-create-responses-048be57a-0d56-468f-9dbe-d8f8089a61d1">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:06:58 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=xGbv%2FJzqdZHivu3B%2B%2FDouiE6ey%2BZASzB3HhE23gUTZ9nF9XNzlj4Z2La3%2Bx%2FF37TR%2FnHd7mJj%2BHvKD16vjxrhIiioawt8rAbOy%2FnvEPxSO5yb39mfrONDAkPHEYiCExs8DlYH%2Fpx%2F1pNC2Dz"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>8998448a8eb9829f-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "profile": {
+        "id": 11,
+        "name": "Test",
+        "description": "This is a test des",
+        "userId": 5
+    }
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-profile-update">
+                            update
+                            <a href="#request-profile-update"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-profile-update-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-profile-update-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-profile-update-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" -d '{
+  "id":13,
+  "name": "Updateds",
+  "description": "This is a test which is updated"
+}' "api.twitterai.workers.dev/auth/profile"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-profile-update-example-http">
+                                    <pre><code class="hljs http">PUT api.twitterai.workers.dev/auth/profile HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw
+
+{
+  "id":13,
+  "name": "Updateds",
+  "description": "This is a test which is updated"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-profile-update-responses-396bbc81-6c94-41d4-8fcc-48eb0559cb04" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-profile-update-responses-0d804663-6090-4ed9-a502-10ea0f0082bf" data-toggle="tab">
+                                        
+                                            error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-profile-update-responses-396bbc81-6c94-41d4-8fcc-48eb0559cb04">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:15:45 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>28</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=76bOB7R6jxFm5UappwBan2JWqJzXCtVkewX1zjffq4y5aleb%2BjzyZMLUOUTGTM4ssGdWq0nY%2B3W6D4fRfyrCgMvVSL4sALM5H1GZfkAngzlVbRndOb%2BUmc2aVFvqnISv2ny1n%2BAy5%2BeMFj0e"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>899851634dbb0790-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "success",
+    "id": 13
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-profile-update-responses-0d804663-6090-4ed9-a502-10ea0f0082bf">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:17:35 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>32</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=usS5BWkwotWA%2FeiZz1PsO6Sr%2BP%2FbahQKHUZ%2BP0mtMmE7vGVJ6EWel6YK3jTw%2FNV%2F%2Fe%2F5mU%2BhlTZW74DnK6k8LpOJdssycQOUn0koEgwmRaoOO2CEoIenbVTioUGPBdKEwqQf3yuIlvTG3vUs"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985418d9790817-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Somthing went wrong"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-profile-delete">
+                            delete
+                            <a href="#request-profile-delete"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-profile-delete-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-profile-delete-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-profile-delete-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" -d '{
+  "id":14
+}' "api.twitterai.workers.dev/auth/profile/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-profile-delete-example-http">
+                                    <pre><code class="hljs http">DELETE api.twitterai.workers.dev/auth/profile/ HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw
+
+{
+  "id":14
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-profile-delete-responses-b424baa9-92e2-4652-9236-061bdba32850" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-profile-delete-responses-b4328b4c-53a3-46e8-94d6-6dfba7a7ec3a" data-toggle="tab">
+                                        
+                                            error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-profile-delete-responses-b424baa9-92e2-4652-9236-061bdba32850">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:16:39 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>28</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Pdwc5Zr3CK%2FmRIRQWdgE1MezAPyQf4M6vzEa%2Br3ngQJrV75cMD3I%2FGc7WpQwZ7yPq%2BK9c%2Fvj%2FnfK1drOvYrwQobY5%2FQYaqnyuK8Y2KZKg8EejTtd2qBAZCofQfI%2FT3cLCSH8lYTPbZE4uNR1"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>899852b72cf55908-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "success",
+    "id": 14
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-profile-delete-responses-b4328b4c-53a3-46e8-94d6-6dfba7a7ec3a">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:18:15 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>32</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=tebVahKO%2FSWVA3QP4S6gRuAvBDK4VBfcGb1yoJtpNasHqbumjdY9eaSOQFygeKeXFAdIWgiK%2Fo51I5vtPS1%2B2rORylJfFk%2FwiwqgLkJ68HKh6mvl0jsttD8cUoK%2Fw22BYMcpGEthqQ%2BsscH8"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985512fd73584e-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "status": "Somthing went wrong"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-generate">
+                        Generate
+                        <a href="#folder-generate"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-generate-generate">
+                            Generate
+                            <a href="#request-generate-generate"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-generate-generate-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-generate-generate-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-generate-generate-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw" -d '{
+    "profile":13,
+    "tweet":"Tell me about yourself"
+}' "api.twitterai.workers.dev/auth/generate"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-generate-generate-example-http">
+                                    <pre><code class="hljs http">POST api.twitterai.workers.dev/auth/generate HTTP/1.1
+Host: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMEBleGFtcGxlLmNvbSIsImlkIjo1fQ.15zG5Hz6MNteL9C-R7A6r7Z8-EZEUIaWjIppbwlBahw
+
+{
+    "profile":13,
+    "tweet":"Tell me about yourself"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-generate-generate-responses-cc1e0f1f-c364-4cf8-80aa-e4609fa3a11e" data-toggle="tab">
+                                        
+                                            success-1
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-generate-generate-responses-3074a131-e794-4ba1-8ad1-8d33719816d2" data-toggle="tab">
+                                        
+                                            success-2
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-generate-generate-responses-44286b1e-72da-46ad-b405-12802d2f553b" data-toggle="tab">
+                                        
+                                            success-3
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-generate-generate-responses-cc1e0f1f-c364-4cf8-80aa-e4609fa3a11e">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:23:39 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=NVkjTZC1oCSzf5prIKABmIJHwtuDT73B4tsMPdLraOKBiWqZumGigtbsI28ci%2FR0JBwwElFTqBfcF%2BlnQKbGeicpJOpRC12uIk9FhUmBwgChGzMFAQRBTsqjjbDgpF86R1dFPOmQMPghFpOp"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985cf719572052-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "response": "\"I'm a highly motivated individual always looking to improve and grow. I'm excited to share that I recently updated my skills with a test, which has given me a fresh perspective on things. I'm looking forward to applying this new knowledge in innovative ways!\"",
+    "profile": "Updateds"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-generate-generate-responses-3074a131-e794-4ba1-8ad1-8d33719816d2">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:24:36 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=L6TdkH7NfEGaR0%2FZK4fYdgb8mIYN8bquDbGIiFFa8K8eGFc9xUEcvdrjn6LWQGZyd4w6yNpzwg11oNcPhTt%2FFMTj8iIPhuquNT4GXEuQI3YiIXkuleXC9o5gGzbLtJayCny68eBY1kiAYcNc"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985e5b48ca2d0a-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "response": "\"Hey! That's a great question! By the way, have you tried using this newly updated test to identify potential issues in your code?\"",
+    "profile": "Updated"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-generate-generate-responses-44286b1e-72da-46ad-b405-12802d2f553b">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:25:02 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=bPKawSMocY%2BL8XGnT4s32lgqj%2FX%2BlCZmTOZuJXXv1cXigc1MXVbMzy9%2B7063VBa%2BF1i7ZoE%2BPFe9GtzBSargRsVtWQfS50sKVFXHd6xQFfz6OHMhbmi5H%2FKLRalTUIyXp8JpCiNOelHVag9M"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985f010b1d2d0a-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "response": "\"Perhaps you can try debugging your code step by step to identify the issue? It's always a good idea to test your code in smaller parts to ensure everything is working as expected.\"",
+    "profile": "Test"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-generate-test1">
+                            test1
+                            <a href="#request-generate-test1"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-generate-test1-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-generate-test1-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-generate-test1-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "tweet": "This is a test tweet"
+}' "api.twitterai.workers.dev/test1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-generate-test1-example-http">
+                                    <pre><code class="hljs http">POST api.twitterai.workers.dev/test1 HTTP/1.1
+Host: 
+
+{
+    "tweet": "This is a test tweet"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-generate-test1-responses-feccf41d-4f65-4e8f-b102-1c5c7d0feed7" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-generate-test1-responses-feccf41d-4f65-4e8f-b102-1c5c7d0feed7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:22:17 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>text/plain; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=bHhwNYog35bnRP0GlEHLaI7G1nYTMj3iN2EGsei3ySwNNC%2Bz%2FW2fb9nk%2BgKeW12ftKyjelMaYQDZIrtf2Jv8g%2F5mWIBm%2BHL4HpqcIUq1jaflRrQCHwbiWV%2FKYdp7Wy1ehYeH1Vp0Yhywbf%2B3"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985afc8bf381c9-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>"Glad you're testing the waters! By the way, have you tried taking a full page screenshot with ScreenCat? It's a game-changer for sharing and saving web pages!"</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-generate-test">
+                            test
+                            <a href="#request-generate-test"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-generate-test-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-generate-test-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-generate-test-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "api.twitterai.workers.dev/test"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-generate-test-example-http">
+                                    <pre><code class="hljs http">GET api.twitterai.workers.dev/test HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-generate-test-responses-e4088907-25e8-48df-a948-ba4572fa5a0d" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-generate-test-responses-e4088907-25e8-48df-a948-ba4572fa5a0d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Tue, 25 Jun 2024 22:21:17 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>text/plain; charset=UTF-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Transfer-Encoding</th><td>chunked</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Report-To</th><td>{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=AESnYtgBKDZKSN7JrFqZ29CMdQ3AOYoS2%2BOosMuBFeSwMpfAMz3Rx5kPz2mL6zxQLgCEfJSRVUCrE%2BvXNsSlKkqgANvhKdrIVehC%2F6uYQbcPr3XmHm6pxHYTTcXU%2FIFhAlgvp84gmwbM5sru"}],"group":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">NEL</th><td>{"success_fraction":0,"report_to":"cf-nel","max_age":604800}</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept-Encoding</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>cloudflare</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">CF-RAY</th><td>89985983ff662f1e-IAD</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Encoding</th><td>gzip</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">alt-svc</th><td>h3=":443"; ma=86400</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>"Ah-ha! I think I've found your solution! Have you tried ScreenCat? It's an amazing extension that helps you take full-page screenshots with just a click!"</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
