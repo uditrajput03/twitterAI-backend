@@ -27,7 +27,7 @@ export const authCheck = createMiddleware(async (c, next) => {
     }
     else {
         return c.json({
-            status: "unauthorized"
+            status: "Unauthorized"
         }, 401)
     }
 })
