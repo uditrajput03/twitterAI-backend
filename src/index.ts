@@ -121,7 +121,28 @@ app.get('/auth/dashboard', async (c) => {
   }
 }
 )
-app.use('/auth/generate' , async (c, next) => {
+app.get('/auth/quota', async (c) => {
+  let jwtData = c.get('jwtPayload')
+  const prisma = c.var.prisma
+  try {
+    let quota = await prisma.user.findUnique({
+      where: {
+        id: jwtData.id
+      },
+      select: {
+        id: true,
+        remaining_quota: true,
+        daily_quota: true
+      }
+    })
+    return c.json(quota)
+  } catch (error) {
+    return c.json({
+      status: "Somthing went wrong"
+    }, 400)
+  }
+})
+app.use('/auth/generate', async (c, next) => {
   await next()
   let jwtData = c.get('jwtPayload')
   const prisma = c.var.prisma
