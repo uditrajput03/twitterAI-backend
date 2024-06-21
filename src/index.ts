@@ -108,7 +108,9 @@ app.get('/auth/dashboard', async (c) => {
         name: true,
         email: true,
         id: true,
-        verified: true
+        verified: true,
+        remaining_quota: true,
+        daily_quota: true
       }
     })
     return c.json(profile)
