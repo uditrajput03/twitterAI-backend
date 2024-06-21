@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "daily_quota" INTEGER NOT NULL DEFAULT 10,
+ADD COLUMN     "remaining_quota" INTEGER NOT NULL DEFAULT 10;
