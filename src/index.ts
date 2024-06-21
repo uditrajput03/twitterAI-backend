@@ -121,7 +121,28 @@ app.get('/auth/dashboard', async (c) => {
   }
 }
 )
-
+app.use('/auth/generate' , async (c, next) => {
+  await next()
+  let jwtData = c.get('jwtPayload')
+  const prisma = c.var.prisma
+  try {
+    await prisma.user.update({
+      where: {
+        id: jwtData.id
+      },
+      data: {
+        remaining_quota: {
+          decrement: 1
+        }
+      }
+    })
+  } catch (error) {
+    console.log(error);
+    return c.json({
+      status: "Somthing went wrong with quota"
+    }, 400)
+  }
+})
 app.post('/auth/generate', async (c) => {
   let reqBody = await c.req.json()
   let jwtData = c.get('jwtPayload')
