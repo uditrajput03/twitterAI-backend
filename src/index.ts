@@ -11,6 +11,7 @@ import { PrismaNeon } from '@prisma/adapter-neon'
 type Bindings = {
   GROQ_KEY: string
   JWT_SECRET: string
+  DATABASE_URL: string
 }
 type Variables = {
   prisma: PrismaClient
@@ -297,7 +298,7 @@ app.post('/test1', async (c) => {
 
 export default {
   fetch: app.fetch,
-  scheduled: async (batch, env) => {
+  scheduled: async (batch, env: Bindings) => {
     const connectionString = env.DATABASE_URL
     const pool = new Pool({ connectionString })
     const adapter = new PrismaNeon(pool)
