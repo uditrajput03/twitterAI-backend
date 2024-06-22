@@ -1,10 +1,12 @@
-import { PrismaClient } from '@prisma/client/extension'
+import { PrismaClient } from '@prisma/client'
 import { decode, sign, verify } from 'hono/jwt'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import { authCheck, getPrisma } from './middleware'
 import { profile } from './profile'
+import { Pool } from '@neondatabase/serverless'
+import { PrismaNeon } from '@prisma/adapter-neon'
 
 type Bindings = {
   GROQ_KEY: string
@@ -293,4 +295,24 @@ app.post('/test1', async (c) => {
   return c.text(groqBody.choices[0].message.content)
 })
 
-export default app
+export default {
+  fetch: app.fetch,
+  scheduled: async (batch, env) => {
+    const connectionString = env.DATABASE_URL
+    const pool = new Pool({ connectionString })
+    const adapter = new PrismaNeon(pool)
+    const prisma = new PrismaClient({ adapter })
+    try {
+      let quota = await prisma.user.updateMany({
+        where: {
+          daily_quota: 10
+        },
+        data: {
+          remaining_quota: 10
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
