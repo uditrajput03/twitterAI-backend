@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client/extension'
+import { PrismaClient as pc } from '@prisma/client'
 import { decode, sign, verify } from 'hono/jwt'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
@@ -324,7 +325,7 @@ export default {
     const connectionString = env.DATABASE_URL
     const pool = new Pool({ connectionString })
     const adapter = new PrismaNeon(pool)
-    const prisma = new PrismaClient({ adapter })
+    const prisma = new pc({ adapter })
     try {
       let quota = await prisma.user.updateMany({
         where: {
