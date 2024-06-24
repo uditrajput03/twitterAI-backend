@@ -8,3 +8,6 @@ minify = true
 #GROQ_KEY = "gsk_"
 #DATABASE_URL = "postgresql://"
 #JWT_SECRET = ""
+
+[triggers]
+crons = ["0 0 * * *"]
