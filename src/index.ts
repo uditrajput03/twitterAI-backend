@@ -321,7 +321,7 @@ app.post('/test1', async (c) => {
 
 export default {
   fetch: app.fetch,
-  scheduled: async (batch, env: Bindings) => {
+  scheduled: async (batch:any, env: Bindings) => {
     const connectionString = env.DATABASE_URL
     const pool = new Pool({ connectionString })
     const adapter = new PrismaNeon(pool)
