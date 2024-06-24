@@ -146,20 +146,42 @@ app.get('/auth/quota', async (c) => {
   }
 })
 app.use('/auth/generate', async (c, next) => {
-  await next()
   let jwtData = c.get('jwtPayload')
   const prisma = c.var.prisma
   try {
-    await prisma.user.update({
+    let quota:any = await prisma.user.findUnique({
       where: {
         id: jwtData.id
       },
-      data: {
-        remaining_quota: {
-          decrement: 1
-        }
+      select: {
+        remaining_quota: true
       }
     })
+    if (quota.remaining_quota <= 0) {
+      return c.json({
+        status: "Limit Exceeded"
+      }, 400)
+    }
+    else {
+      await next()
+      try {
+        await prisma.user.update({
+          where: {
+            id: jwtData.id
+          },
+          data: {
+            remaining_quota: {
+              decrement: 1
+            }
+          }
+        })
+      } catch (error) {
+        console.log(error);
+        return c.json({
+          status: "Somthing went wrong with quota"
+        }, 400)
+      }
+    }
   } catch (error) {
     console.log(error);
     return c.json({
