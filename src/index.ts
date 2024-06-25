@@ -150,7 +150,7 @@ app.use('/auth/generate', async (c, next) => {
   let jwtData = c.get('jwtPayload')
   const prisma = c.var.prisma
   try {
-    let quota:any = await prisma.user.findUnique({
+    let quota: any = await prisma.user.findUnique({
       where: {
         id: jwtData.id
       },
@@ -158,6 +158,7 @@ app.use('/auth/generate', async (c, next) => {
         remaining_quota: true
       }
     })
+    c.set("quota", quota)
     if (quota.remaining_quota <= 0) {
       return c.json({
         status: "Limit Exceeded"
@@ -193,6 +194,7 @@ app.use('/auth/generate', async (c, next) => {
 app.post('/auth/generate', async (c) => {
   let reqBody = await c.req.json()
   let jwtData = c.get('jwtPayload')
+  let remaining_quota = c.get('quota').remaining_quota - 1
   const prisma = c.var.prisma
   try {
     const profile = await prisma.profile.findUnique({
@@ -232,7 +234,8 @@ app.post('/auth/generate', async (c) => {
     return c.json(
       {
         "response": groqBody.choices[0].message.content,
-        "profile": profile.name
+        "profile": profile.name,
+        "remaining_quota": remaining_quota
       }
     )
   } catch (error) {
@@ -321,7 +324,7 @@ app.post('/test1', async (c) => {
 
 export default {
   fetch: app.fetch,
-  scheduled: async (batch:any, env: Bindings) => {
+  scheduled: async (batch: any, env: Bindings) => {
     const connectionString = env.DATABASE_URL
     const pool = new Pool({ connectionString })
     const adapter = new PrismaNeon(pool)
