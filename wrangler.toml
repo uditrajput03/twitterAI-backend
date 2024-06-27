@@ -1,0 +1,10 @@
+name = "api"
+#name = "twitterai-backend"
+compatibility_date = "2023-12-01"
+main = "src/index.ts"
+minify = true
+
+[vars]
+#GROQ_KEY = "gsk_"
+#DATABASE_URL = "postgresql://"
+#JWT_SECRET = ""
