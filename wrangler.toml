@@ -8,6 +8,8 @@ minify = true
 #GROQ_KEY = "gsk_"
 #DATABASE_URL = "postgresql://"
 #JWT_SECRET = ""
+BOT_TOKEN = ""
+CHAT_ID = ""
 
 [triggers]
 crons = ["0 0 * * *"]
