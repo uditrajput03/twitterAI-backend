@@ -28,6 +28,7 @@ app.route('/auth/profile/*', profile)
 app.get('/', async (c: any) => {
   return c.text(`Hello from twitterAI prod`)
 })
+app.use('/register', teleLogger )
 app.post('/register', async (c) => {
   const body: any = await c.req.json()
   const prisma = c.var.prisma
@@ -41,6 +42,7 @@ app.post('/register', async (c) => {
       }
     })
     const jwt = await sign({ email: out.email, id: out.id }, c.env.JWT_SECRET)
+    c.set('jwtPayload', { email: out.email, id: out.id })
     return c.json({
       status: "Account Created successfully",
       id: out.id,
