@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { getPrisma } from './middleware'
+import { getPrisma, teleLogger } from './middleware'
 import { PrismaClient } from '@prisma/client/extension'
 
 type Bindings = {
@@ -38,6 +38,7 @@ profile.get('/', async (c: any) => {
         }, 400)
     }
 })
+profile.use('/', teleLogger)
 profile.post('/', async (c) => {
     const body = await c.req.json()
     const prisma = c.var.prisma
