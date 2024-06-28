@@ -32,8 +32,8 @@ export const authCheck = createMiddleware(async (c, next) => {
     }
 })
 export const teleLogger = createMiddleware(async (c, next) => {
-    await next()
-    let jwtData = c.get('jwtPayload')
+    let e:any = await next();
+    let jwtData = e.get('jwtPayload')
     try {
         let data = {
             chat_id: c.env.CHAT_ID,
