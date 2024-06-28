@@ -19,7 +19,11 @@ jobs:
             DATABASE_URL
             JWT_SECRET
             GROQ_KEY
+            BOT_TOKEN
+            CHAT_ID
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           GROQ_KEY: ${{ secrets.GROQ_KEY }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
