@@ -31,3 +31,26 @@ export const authCheck = createMiddleware(async (c, next) => {
         }, 401)
     }
 })
+export const teleLogger = createMiddleware(async (c, next) => {
+    next()
+    let jwtData = c.get('jwtPayload')
+    try {
+        let data = {
+            chat_id: c.env.CHAT_ID,
+            text: `Action: ${c.req.path} ${c.req.url} ${c.req.routePath}
+Email: ${jwtData.email}`
+        }
+        console.log(data);
+        c.executionCtx.waitUntil(
+            fetch(`https://api.telegram.org/bot${c.env.BOT_TOKEN}/sendMessage`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            })
+        )
+    } catch (error) {
+        console.log("Something went wrong in teleLogger")
+    }
+})
