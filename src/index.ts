@@ -4,7 +4,7 @@ import { decode, sign, verify } from 'hono/jwt'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { authCheck, getPrisma } from './middleware'
+import { authCheck, getPrisma, teleLogger } from './middleware'
 import { profile } from './profile'
 import { Pool } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
@@ -146,6 +146,7 @@ app.get('/auth/quota', async (c) => {
     }, 400)
   }
 })
+app.use('/auth/generate', teleLogger)
 app.use('/auth/generate', async (c, next) => {
   let jwtData = c.get('jwtPayload')
   const prisma = c.var.prisma
