@@ -1,5 +1,5 @@
 # TwitterAI Backend API - SmartTweet
-## Install - 
+## Install - https://microsoftedge.microsoft.com/addons/detail/smarttweet/bplcifbjmgligfoedapdbgbmocdiaecl
 ## Frontend - https://github.com/Sagarpatidar0/Twitter-Extension
 ## Backend - https://github.com/uditrajput03/twitterAI-backend
 
